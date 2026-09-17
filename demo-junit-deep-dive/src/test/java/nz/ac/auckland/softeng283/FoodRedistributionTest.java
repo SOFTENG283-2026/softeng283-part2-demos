@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /** Deliberately poor tests for a test-refactoring demonstration. All initially pass. */
 public class FoodRedistributionTest {
@@ -38,23 +41,27 @@ public class FoodRedistributionTest {
 
   @Nested
   class BestPractice03 { // Shared setup belongs in a fresh fixture, such as @BeforeEach
+    FoodDonation food;
+
+    @BeforeEach
+    public void setUp() {
+      food = new FoodDonation("Neighbourhood Bakery", BAKERY, 100);
+    }
+
     @Test
     void addPortions_increasesAvailableFood() {
-      FoodDonation food = new FoodDonation("Neighbourhood Bakery", BAKERY, 100);
       food.addPortions(20);
       assertEquals(120, food.getAvailablePortions());
     }
 
     @Test
     void reserveFor_decreasesAvailableFood() {
-      FoodDonation food = new FoodDonation("Neighbourhood Bakery", BAKERY, 100);
       food.reserveFor("Food Relief Charity", 30);
       assertEquals(70, food.getAvailablePortions());
     }
 
     @Test
     void reserveFor_entireBatch_leavesNoAvailableFood() {
-      FoodDonation food = new FoodDonation("Neighbourhood Bakery", BAKERY, 100);
       food.reserveFor("Community Kitchen", 100);
       assertTrue(food.isFullyReserved());
     }
@@ -62,25 +69,13 @@ public class FoodRedistributionTest {
 
   @Nested
   class BestPractice04 { // Parameterised tests for repeated cases
-    @Test
-    void addPortions_10_makes10Available() {
-      FoodDonation food = new FoodDonation("Local Restaurant", RESTAURANT, 0);
-      food.addPortions(10);
-      assertEquals(10, food.getAvailablePortions());
-    }
 
-    @Test
-    void addPortions_20_makes20Available() {
+    @ParameterizedTest
+    @ValueSource(ints = {10, 20, 50})
+    void addPortions_10_makes10Available(int input) {
       FoodDonation food = new FoodDonation("Local Restaurant", RESTAURANT, 0);
-      food.addPortions(20);
-      assertEquals(20, food.getAvailablePortions());
-    }
-
-    @Test
-    void addPortions_50_makes50Available() {
-      FoodDonation food = new FoodDonation("Local Restaurant", RESTAURANT, 0);
-      food.addPortions(50);
-      assertEquals(50, food.getAvailablePortions());
+      food.addPortions(input);
+      assertEquals(input, food.getAvailablePortions());
     }
   }
 
@@ -134,9 +129,10 @@ public class FoodRedistributionTest {
 
       driver.collect(food, "Food Relief Charity", 30);
 
-      assertEquals(70, food.getAvailablePortions());
-      assertEquals(30, driver.getCarriedPortions());
-      assertEquals(20, driver.getRemainingCapacity());
+      assertAll(
+          () -> assertEquals(20, food.getAvailablePortions()),
+          () -> assertEquals(30, driver.getCarriedPortions()),
+          () -> assertEquals(10, driver.getRemainingCapacity()));
     }
   }
 
