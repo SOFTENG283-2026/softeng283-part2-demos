@@ -1,7 +1,16 @@
 package nz.ac.auckland.softeng283.bank;
 
-public interface BankAccount {
-  int getBalance();
+public class BankAccount {
+  int balance;
 
-  void setBalance(int amount);
+  public BankAccount(int balance) {
+    this.balance = balance;
+  }
+
+  public int getBalance() {return balance;}
+
+  public void setBalance(int amount){
+
+    balance = amount;
+  }
 }

@@ -18,6 +18,8 @@ public class Messenger {
 
   public void sendMessage(Client client, Template template) {
     String msgContent = templateEngine.prepareMessage(template, client);
-    mailServer.send(client.getEmail(), msgContent);
+    String email = client.getEmail();
+
+    mailServer.send(email, msgContent);
   }
 }
