@@ -1,5 +1,6 @@
 package nz.ac.auckland.softeng283;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,6 @@ class OrderCalculatorTest {
     double result = OrderCalculator.calculateTotal(subtotal, taxRate, discountRate, shipping);
 
     // Assert
-    assertTrue(result >= 0.0);
+   assertEquals(118.0, result, 0.001);
   }
 }

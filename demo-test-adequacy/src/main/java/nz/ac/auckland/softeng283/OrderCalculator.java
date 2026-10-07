@@ -2,8 +2,7 @@ package nz.ac.auckland.softeng283;
 
 public final class OrderCalculator {
 
-  private OrderCalculator() {
-  }
+  private OrderCalculator() {}
 
   public static double calculateTotal(
       double subtotal, double taxRate, double discountRate, double shipping) {
