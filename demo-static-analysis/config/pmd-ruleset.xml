@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ruleset name="softeng283-exercise"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+  <description>SOFTENG283 week 10 demo static analsysis</description>
+
+  <!-- Long Method: report methods with 10 or more statements (NCSS). PMD's default is 60;
+       10 is strict on purpose for this small exercise. -->
+  <rule ref="category/java/design.xml/NcssCount">
+    <properties>
+      <property name="methodReportLevel" value="10"/>
+    </properties>
+  </rule>
+
+  <!-- Long Parameter List: report methods with MORE than 3 parameters (default: more than 10). -->
+  <rule ref="category/java/design.xml/ExcessiveParameterList">
+    <properties>
+      <property name="minimum" value="3"/>
+    </properties>
+  </rule>
+
+  <!-- Magic numbers in if-conditions. -->
+  <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition"/>
+
+  <!-- Large class / data-only class. -->
+  <rule ref="category/java/design.xml/GodClass"/>
+  <rule ref="category/java/design.xml/DataClass"/>
+
+  <!-- Dead code. -->
+  <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod"/>
+  <rule ref="category/java/codestyle.xml/UnnecessaryImport"/>
+
+  <!-- Depending on concrete types / hard-wired output. -->
+  <rule ref="category/java/bestpractices.xml/LooseCoupling"/>
+  <rule ref="category/java/bestpractices.xml/SystemPrintln"/>
+</ruleset>
