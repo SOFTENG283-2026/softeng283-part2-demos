@@ -1,0 +1,19 @@
+Act as a test designer. The implementation below may contain faults. Do not use its current output
+as an expected result.
+
+Before generating code, create a table containing each test input, the expected refund, the
+calculation, and the exact policy rule that justifies it. Derive expected values only from the
+policy. Check exactly 24 hours, exactly 2 hours, and a non-zero booking fee. If implementation and
+policy disagree, keep the policy-derived expectation so that the test fails.
+
+Then return one compilable JUnit 5 test class using Java 21 and JUnit Jupiter.
+
+Cinema cancellation policy:
+- With at least 24 hours' notice, refund 100% of the ticket price.
+- With at least 2 hours but less than 24 hours' notice, refund 50% of the ticket price.
+- With less than 2 hours' notice, refund nothing.
+- The booking fee is never refundable. Refund percentages apply to the ticket price only.
+- Negative prices, fees, or notice are invalid.
+
+[Paste RefundCalculator.java here.]
+

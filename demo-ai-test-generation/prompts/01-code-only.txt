@@ -1,0 +1,6 @@
+Generate a comprehensive JUnit 5 test suite for the Java class below. Aim for high branch coverage
+and include typical cases, boundary values around each condition, and invalid inputs. Use
+descriptive test names and exact assertions. Do not modify the production class. Return only one
+test class using Java 21 and JUnit Jupiter.
+
+[Paste RefundCalculator.java here. Do not provide the cancellation policy.]

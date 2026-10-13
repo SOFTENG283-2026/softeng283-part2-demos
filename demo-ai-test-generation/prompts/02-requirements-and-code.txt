@@ -1,0 +1,16 @@
+Generate a comprehensive JUnit 5 test suite for `RefundCalculator` using the implementation and
+requirements below. Cover normal cases, boundary values, and invalid inputs. Use descriptive test
+names and exact assertions. Do not modify the production class. Return only one test class using
+Java 21 and JUnit Jupiter.
+
+Cinema cancellation policy:
+- With at least 24 hours' notice, refund 100% of the ticket price.
+- With at least 2 hours but less than 24 hours' notice, refund 50% of the ticket price.
+- With less than 2 hours' notice, refund nothing.
+- The booking fee is never refundable. Refund percentages apply to the ticket price only.
+- Negative prices, fees, or notice are invalid.
+
+Here is the current implementation:
+
+[Paste RefundCalculator.java here.]
+
