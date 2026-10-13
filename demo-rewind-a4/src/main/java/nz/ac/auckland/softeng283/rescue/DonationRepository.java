@@ -1,8 +1,23 @@
 package nz.ac.auckland.softeng283.rescue;
 
-public interface DonationRepository {
+import java.util.HashSet;
+import java.util.Set;
 
-  int getAvailablePortions(String donationId);
+public class DonationRepository {
 
-  void reserve(String donationId, String organisationId, int portions);
+  private final Set<String> reservations;
+
+  public DonationRepository(){
+    reservations = new HashSet<>();
+  }
+
+  public int getAvailablePortions(String donationId) {
+  // TODO 
+    return 30;
+  }
+
+  public void reserve(String donationId, String organisationId, int portions) {
+    reservations.add(donationId);
+
+  }
 }
