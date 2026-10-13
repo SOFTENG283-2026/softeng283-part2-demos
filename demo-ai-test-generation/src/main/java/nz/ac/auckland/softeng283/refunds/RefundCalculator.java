@@ -8,14 +8,12 @@ public class RefundCalculator {
       throw new IllegalArgumentException("Prices and notice must not be negative");
     }
 
-    int amountPaid = ticketPriceCents + bookingFeeCents;
-    if (hoursUntilStart > 24) {
-      return amountPaid;
+    if (hoursUntilStart >= 24) {
+      return ticketPriceCents;
     }
     if (hoursUntilStart >= 2) {
-      return amountPaid / 2;
+      return ticketPriceCents / 2;
     }
     return 0;
   }
 }
-
