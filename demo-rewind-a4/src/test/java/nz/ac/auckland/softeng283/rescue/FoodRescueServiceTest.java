@@ -1,5 +1,6 @@
 package nz.ac.auckland.softeng283.rescue;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -21,4 +22,19 @@ class FoodRescueServiceTest {
     assertTrue(reserved);
     Mockito.verify(donationRepository).reserve(DONATION_ID, ORGANISATION_ID, 20);
   }
+
+
+    @Test
+  void reserve_notEnoughRequest_reservationAborted() {
+    DonationRepository donationRepository = Mockito.mock(DonationRepository.class);
+    FoodRescueService service = new FoodRescueService(donationRepository);
+
+    boolean reserved = service.reserve(DONATION_ID, ORGANISATION_ID, 2);
+
+    assertFalse(reserved);
+  }
+
+
+
+
 }
